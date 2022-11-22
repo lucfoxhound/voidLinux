@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# WIFI commands 
+
+# command should be the 1st parameter in uppercase
+COMMAND=${1^^}
+
+# shift 1st parameter (i.e. the command)
+shift
+
+case ${COMMAND} in
+	"LIST") nmcli device wifi list
+		;;
+	"DEV")  lspci | egrep -i --color 'wifi|wlan|wireless'
+		sudo lspci -vv -s 02:00.0
+		iw dev
+		;;
+	"CNX")  nmcli con show "$@"
+		;;
+	"SIG")  watch -n 1 cat /proc/net/wireless
+		;;
+	"MON")  wavemon
+		;;
+	"SCAN") nmcli device wifi rescan
+		;;
+	*) echo "what ??"
+		;;
+esac

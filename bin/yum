@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# YUM command alias
+# translate xbps package commands in REDHAT's yum syntax
+
+# command should be the 1st parameter in uppercase
+COMMAND=${1^^}
+
+# shift 1st parameter (i.e. the command)
+shift
+
+case ${COMMAND} in
+	"SEARCH") xbps-query -Rs "$@"
+		;;
+	"INSTALL") sudo xbps-install -S "$@"
+		;;
+	"REMOVE") sudo xbps-remove -R "$@"
+		;;
+	"UPDATE") sudo xbps-install -Su
+		  xcheckrestart
+		;;
+	"INFO") xbps-query -R "$@"
+		;;
+	"LIST") sudo xbps-query -l 
+		;;
+	"BUILD") cd ${HOME}/void-packages
+		 ./xbps-src pkg "$@"
+		;;
+	"SRC") git clone https://github.com/void-linux/void-packages.git ${HOME}
+	       cd ${HOME}/void-packages
+	       #./xbps-src binary-bootstrap
+		;;
+	"REPOLIST") sudo xbps-query --list-repos
+		;;
+	*) echo "what ??"
+		;;
+esac

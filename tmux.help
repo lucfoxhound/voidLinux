@@ -1,0 +1,20 @@
+Windows
+-------
+	CTRL+b c	: Create window
+	CTRL+b ,	: Rename window
+	CTRL+b &	: Close window
+	CTRL+b p	: Previous window
+	CTRL+b n	: Next window
+	CTRL+b 0 ... 9	: Switch window by number
+
+Panes
+-----
+	CTRL+b ;	: Toggle last active pane
+	CTRL+b %	: Split pane vertically
+	CTRL+b "	: Split pane horizontally
+	CTRL+b {	: Move pane left
+	CTRL+b }	: Move pane right
+	CTRL+b [UP]	: Switch to pane to the direction
+	CTRL+b x	: Close current pane
+	CTRL+b o	: Switch to next pane
+	

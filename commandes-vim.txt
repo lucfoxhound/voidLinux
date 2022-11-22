@@ -1,0 +1,128 @@
+ZZ = wq!
+
+Command 	Purpose
+i 	Switch to Insert mode.
+Esc 	Switch to Command mode.
+:w 	Save and continue editing.
+: wq or ZZ 	Save and quit/exit vi.
+:q! 	Quit vi and do not save changes.
+yy 	Yank (copy a line of text).
+yw  yank word
+p 	Paste a line of yanked text below the current line.
+o 	Open a new line under the current line.
+O 	Open a new line above the current line.
+A 	Append to the end of the line.
+a 	Append after the cursor's current position.
+I 	Insert text at the beginning of the current line.
+b 	Go to the beginning of the word.
+e 	Go to the end of the word.
+x 	Delete a single character.
+dd 	Delete an entire line.
+Xdd 	Delete X number of lines.
+Xyy 	Yank X number of lines.
+G 	Go to the last line in a file.
+XG 	Go to line X in a file.
+gg 	Go to the first line in a file.
+:num 	Display the current line's line number.
+h 	Move left one character.
+j 	Move down one line.
+k 	Move up one line.
+l 	Move right one character.
+
+    :1 - Moves the cursor to the start of the page.
+    :$ - Moves the cursor to the end of the page.
+
+
+    set num - Sets the line numbers.
+    set paste - Pastes a bulk of text from some other location.
+u - Undo the previously executed command.
+:f filename - Helps you to rename the file.
+To toggle between two open files:
+
+:e # - Helps you to navigate/toggle between two open files.
+
+vimtutor in the terminal
+https://vim-adventures.com/
+
+" Set compatibility to Vim only.
+set nocompatible
+
+" Helps force plug-ins to load correctly when it is turned back on below.
+filetype off
+
+" Turn on syntax highlighting.
+syntax on
+
+" For plug-ins to load correctly.
+filetype plugin indent on
+
+" Turn off modelines
+set modelines=0
+
+" Automatically wrap text that extends beyond the screen length.
+set wrap
+" Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+" Uncomment below to set the max textwidth. Use a value corresponding to the width of your screen.
+" set textwidth=79
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshiftround
+
+" Display 5 lines above/below the cursor when scrolling with a mouse.
+set scrolloff=5
+" Fixes common backspace problems
+set backspace=indent,eol,start
+
+" Speed up scrolling in Vim
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Display options
+set showmode
+set showcmd
+
+" Highlight matching pairs of brackets. Use the '%' character to jump between them.
+set matchpairs+=<:>
+
+" Display different types of white spaces.
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+" Show line numbers
+set number
+
+" Set status line display
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+
+" Encoding
+set encoding=utf-8
+
+" Highlight matching search patterns
+set hlsearch
+" Enable incremental search
+set incsearch
+" Include matching uppercase words with lowercase search term
+set ignorecase
+" Include only uppercase words with uppercase search term
+set smartcase
+
+" Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data. Useful for copying large amounts of data between files.
+set viminfo='100,<9999,s100
+
+" Map the <Space> key to toggle a selected fold opened/closed.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" Automatically save and load folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview"
+

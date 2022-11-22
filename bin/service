@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# SERVICE command alias
+# translate sv commands
+
+# command should be the 1st parameter in uppercase
+COMMAND=${1^^}
+
+# shift 1st parameter (i.e. the command)
+shift
+
+case ${COMMAND} in
+	"RESTART") sudo sv restart  "$@"
+		;;
+	"STOP") sudo sv down  "$@"
+		;;
+	"START") sudo sv up  "$@"
+		;;
+	"STATUS") sudo sv status "$@"
+		;;
+	*) echo "what ??"
+		;;
+esac
