@@ -16,6 +16,10 @@ case ${COMMAND} in
 		;;
 	"REMOVE") sudo xbps-remove -R "$@"
 		;;
+	"DEV") xbps-query -Rs "$@" | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | grep devel
+		;;
+	"DEP") for i in $(cat "$@"); do sudo xbps-install -Sy $i; done
+		;;
 	"UPDATE") sudo xbps-install -Su
 		  xcheckrestart
 		;;
