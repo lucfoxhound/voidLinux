@@ -23,6 +23,10 @@ case ${COMMAND} in
 	"UPDATE") sudo xbps-install -Su
 		  xcheckrestart
 		;;
+    "HISTORY") [ -z "$@" ] && xilog || xilog | grep "$@"
+        ;;
+    "SIZE") [ -z "$@" ] && xhog || xhog | grep "$@"
+        ;;
 	"INFO") xbps-query -R "$@"
 		;;
 	"LIST") sudo xbps-query -l 
