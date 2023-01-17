@@ -5,18 +5,25 @@
 
 # command should be the 1st parameter in uppercase
 COMMAND=${1^^}
-
+if [ -z "$COMMAND" ]
+then
+    COMMAND="LIST"
+fi
 # shift 1st parameter (i.e. the command)
 shift
 
 case ${COMMAND} in
-	"RESTART") sudo sv restart  "$@"
+	"RESTART") [ -z "$@" ] && sudo vsv restart  "$@"
 		;;
-	"STOP") sudo sv down  "$@"
+	"STOP") sudo vsv stop  "$@"
 		;;
-	"START") sudo sv up  "$@"
+	"RELOAD") [ -z "$@" ] && sudo vsv reload  "$@"
 		;;
-	"STATUS") sudo sv status "$@"
+	"LIST") sudo vsv 
+		;;
+	"START") sudo vsv start  "$@"
+		;;
+	"STATUS") sudo vsv status -t "$@"
 		;;
 	*) echo "what ??"
 		;;
