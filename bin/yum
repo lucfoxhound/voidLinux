@@ -14,6 +14,8 @@ case ${COMMAND} in
 		;;
 	"INSTALL") sudo xbps-install -S "$@"
 		;;
+	"PURGE") sudo vkpurge 
+		;;
 	"REMOVE") sudo xbps-remove -R "$@"
 		;;
 	"DEV") xbps-query -Rs "$@" | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | grep devel
@@ -22,6 +24,8 @@ case ${COMMAND} in
 		;;
 	"UPDATE") sudo xbps-install -Su
 		  xcheckrestart
+		;;
+	"UPGRADE") sudo xbps-install -u xbps && sudo xbps-install -u xbps
 		;;
     "HISTORY") [ -z "$@" ] && xilog || xilog | grep "$@"
         ;;
